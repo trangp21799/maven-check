@@ -58,5 +58,6 @@ public class ExtentListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
+        ExtentManager.getReporter().flush();
     }
 }

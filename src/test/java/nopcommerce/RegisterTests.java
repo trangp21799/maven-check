@@ -17,7 +17,6 @@ import utilities.report.ExtentTestMananger;
 
 import java.lang.reflect.Method;
 
-@Listeners(ExtentListener.class)
 public class RegisterTests extends BaseTest {
     WebDriver driver;
     HomePageObject homePage;
@@ -59,18 +58,8 @@ public class RegisterTests extends BaseTest {
         Assert.assertEquals(registerPage.getPasswordErrorMessage(), "Password is required.");
 
         ExtentTestMananger.getTest().log(Status.INFO,"Register Step 5 - Verify Confirm Password message error");
-        Assert.assertEquals(registerPage.getConfirmPassordErrorMessage(), "Password is required.");
+        Assert.assertEquals(registerPage.getConfirmPassordErrorMessage(), "Passwod is required.");
     }
-
-//    @Test
-//    public void Register_01_Wrong_Email() {
-//
-//    }
-//
-//    @Test
-//    public void Register_01_Sucessfully() {
-//
-//    }
 
     @AfterClass
     public void afterClass() {
