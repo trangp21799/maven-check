@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="Nopcommerce">
+    <listeners>
+        <listener class-name="utilities.listener.ExtentListener"></listener>
+    </listeners>
+
+    <test name = "test nopcommerce">
+        <parameter name="browserName" value="firefox"></parameter>
+        <parameter name="serverName" value="dev"></parameter>
+        <classes>
+            <class name="nopcommerce.RegisterTests"></class>
+        </classes>
+    </test>
+</suite>
