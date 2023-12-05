@@ -17,28 +17,19 @@ public class BasePage {
     }
 
     public By getByLocator(String locatorType) {
-        String[] locatorParts = locatorType.split("=");
-        String type = locatorParts[0].toLowerCase();
-        String locator = locatorParts[1];
         By by = null;
-        switch (type){
-            case "xpath":
-                by = By.xpath(locator);
-                break;
-            case "id":
-                by = By.id(locator);
-                break;
-            case "css":
-                by = By.cssSelector(locator);
-                break;
-            case "class":
-                by = By.className(locator);
-                break;
-            case "name":
-                by = By.name(locator);
-                break;
-            default:
-                throw new RuntimeException("Locator type is not valid");
+        if (locatorType.startsWith("xpath=") || locatorType.startsWith("Xpath=") || locatorType.startsWith("XPATH=")){
+            by = By.xpath(locatorType.substring(6));
+        } else if (locatorType.startsWith("css=") || locatorType.startsWith("Css=") || locatorType.startsWith("CSS=")) {
+            by = By.cssSelector(locatorType.substring(4));
+        } else if (locatorType.startsWith("id=") || locatorType.startsWith("Id=") || locatorType.startsWith("ID=")) {
+            by = By.id(locatorType.substring(3));
+        } else if (locatorType.startsWith("name=") || locatorType.startsWith("Name=") || locatorType.startsWith("NAME=")) {
+            by = By.name(locatorType.substring(5));
+        } else if (locatorType.startsWith("classname=") || locatorType.startsWith("Classname=") || locatorType.startsWith("CLASSNAME=")) {
+            by = By.className(locatorType.substring(10));
+        } else {
+            throw new RuntimeException("Locator type is not supported");
         }
         return by;
     }
@@ -63,7 +54,6 @@ public class BasePage {
     }
 
     public void clickToElement(WebDriver driver, String locatorType) {
-//        waitForElementClickable(driver, locatorType);
         getWebElement(driver, locatorType).click();
     }
 
@@ -75,5 +65,10 @@ public class BasePage {
         WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.SHORT_TIME_OUT);
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locatorType)));
     }
+
+    public String getCssValue(WebDriver driver, String locatorType, String attribute) {
+        return getWebElement(driver, locatorType).getCssValue("border-color");
+    }
+
 
 }

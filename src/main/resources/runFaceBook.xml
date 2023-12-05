@@ -4,11 +4,11 @@
         <listener class-name="utilities.listener.ExtentListener"></listener>
     </listeners>
 
-    <test name = "test nopcommerce">
+    <test name = "test fb">
         <parameter name="browserName" value="h_firefox"></parameter>
         <parameter name="serverName" value="dev"></parameter>
         <classes>
-            <class name="nopcommerce.RegisterTests"></class>
+            <class name="fb.RegisterTests"></class>
         </classes>
     </test>
 </suite>

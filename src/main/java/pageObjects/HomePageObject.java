@@ -12,8 +12,20 @@ public class HomePageObject extends BasePage {
         this.driver = driver;
     }
 
-    public RegisterPageObject clickToRegisterLink() {
+    public void clickToRegisterLink() {
         clickToElement(driver, HomePageUI.REGISTER_LINK);
-        return PageManagerGenerator.getRegisterPage(driver);
+//        return PageManagerGenerator.getRegisterPage(driver);
     }
+
+    public void clickToRegisterButtonInPopup() {
+        clickToElement(driver, HomePageUI.REGSTER_BUTTON_IN_POP_UP);
+    }
+
+    public String getInputFirstNameBorderColor() {
+        return getCssValue(driver, HomePageUI.FIRST_NAME_TEXT_BOX, "border-color");
+    }
+
+
+
+
 }
